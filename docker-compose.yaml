@@ -1,0 +1,19 @@
+version: "1.0"
+
+volumes:
+  pgrs_api_vol:
+
+services:
+  api_service:
+    build: /
+    restart: always
+    environment:
+      - TZ=Europe/Moscow
+      - POSTGRES_DB_ADDR=postgres
+      - POSTGRES_DB_PORT=5432
+
+  postgres:
+    image: postgres:15.0-alpine
+    volumes:
+      - pgrs_api_vol:/data/db
+    restart: always

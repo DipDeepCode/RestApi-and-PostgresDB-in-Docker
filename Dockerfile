@@ -1,3 +1,8 @@
 FROM openjdk:17-alpine
-COPY build/libs/restapivdsdocker-0.0.1-SNAPSHOT-plain.jar /app/app.jar
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+RUN mkdir -p /app
+WORKDIR /app
+ARG JAR_FILE=build/libs/\*.jar
+COPY ${JAR_FILE} app/app.jar
+EXPOSE 8080
+ENV TZ Europe/Moscow
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "/app.jar"]
