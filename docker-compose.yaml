@@ -1,11 +1,11 @@
-version: "1.0"
+version: "3.8"
 
 volumes:
   pgrs_api_vol:
 
 services:
   api_service:
-    build: /
+    build: ./
     restart: always
     environment:
       - TZ=Europe/Moscow
